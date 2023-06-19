@@ -1,16 +1,23 @@
 <script setup>
 //import { RouterLink, RouterView } from 'vue-router'
 //import HelloWorld from './components/HelloWorld.vue'
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import MyProduct from './components/product/MyProduct.vue';
 import axios from 'axios';
+
+  const cards = ref([])
+  const getCard = async () => {
+    cards.value = await axios.get('https://fakestoreapi.com/products').then(function(response){
+      return response.data;
+      });
+  }
+  onBeforeMount(getCard);
 
 </script>
 
 <template>
   <div>
-    <MyProduct />
-    <div></div>
+    <MyProduct v-for="card in cards" :key="card.id" :card="card" />
   </div>
  <!--<header>
     

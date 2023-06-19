@@ -1,30 +1,30 @@
 <template>
     <div class="card">
         <div class="photo">
-            <img src="https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg">
+            <img :src="`${props.card.image}`">
         </div>
         <div class="description">
-            <h2>Classic Peace Lily</h2>
+            <h3>{{props.card.title}}</h3>
             <h4>Popular House Plant</h4>
-            <h1>$18</h1>
-            <p>Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.</p>
+            <h1>{{props.card.price}} $</h1>
+            <p>{{props.card.description}}</p>
             <button>Add to Cart</button>
             <button>Wishlist</button>
         </div>
     </div>
 </template>
 <script setup>
-
+    const props = defineProps(['card'])
 </script>
-<style scoped>
 
+<style scoped>
 .card {
     width: 650px;
     height: 350px;
     margin-top: 10px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);  
 }
-&:hover {
+.card:hover {
   box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 } 
 .photo {  
@@ -32,12 +32,13 @@
       width: 45%;
       text-align: center;
       float: left;
+      overflow: overlay;
 }  
 img { 
         max-height: 240px; 
 }
 .description {
-       padding: 30px;
+       padding: 15px;
        float: left;
        width: 55%;
        border-left: 2px solid #efefef;
@@ -50,30 +51,29 @@ img {
          font-size: 30px;
          font-weight: 300;
 }
-     
 .description h2 {
         color: #515151;
         margin: 0;
         text-transform: uppercase;
         font-weight: 500;
 }
-      
 .description h4 { 
          margin: 0;
          color: #727272;
          text-transform: uppercase;
          font-weight: 500;
          font-size: 12px
-}
-      
+} 
 .description p { 
          font-size: 12px; 
          line-height: 20px;
          color: #727272;
          padding: 20px 0;
          margin: 0;
-}
-      
+         max-width: 330px;
+         overflow: auto;
+        max-height: 120px;
+}   
 button {
          outline: 0;
          border: 0;
