@@ -5,7 +5,7 @@
         </div>
         <div class="description">
             <h3>{{props.card.title}}</h3>
-            <h4>Popular House Plant</h4>
+            <h4>{{props.card.category}}</h4>
             <h1>{{props.card.price}} $</h1>
             <p>{{props.card.description}}</p>
             <button>Add to Cart</button>
