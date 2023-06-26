@@ -2,7 +2,8 @@
     <div class="modalform">
         <div class="header">
             <span>HeaderName</span>
-            <span class="mdi mdi-close pass bluu"></span>
+            <span class="mdi mdi-close"></span>
+            
         </div>
     </div>
 </template>
