@@ -1,9 +1,17 @@
+<template>
+  <div class="">
+    <ModalForm />
+    <MyProduct v-for="card in cards" :key="card.id" :card="card" />
+  </div>
+ </template>
+
+
+
 <script setup>
-//import { RouterLink, RouterView } from 'vue-router'
-//import HelloWorld from './components/HelloWorld.vue'
 import { onBeforeMount, ref } from 'vue';
 import MyProduct from './components/product/MyProduct.vue';
 import axios from 'axios';
+import ModalForm from './components/ModalForm.vue';
 
   const cards = ref([])
   const getCard = async () => {
@@ -14,26 +22,6 @@ import axios from 'axios';
   onBeforeMount(getCard);
 
 </script>
-
-<template>
-  <div>
-    <MyProduct v-for="card in cards" :key="card.id" :card="card" />
-  </div>
- <!--<header>
-    
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />-->
-</template>
 
 <style scoped>
 </style>

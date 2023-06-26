@@ -14,7 +14,7 @@
     </div>
 </template>
 <script setup>
-    const props = defineProps(['card'])
+    const props = defineProps(['card']);
 </script>
 
 <style scoped>
