@@ -19,7 +19,7 @@
 
 <style scoped>
 .card {
-    width: 650px;
+    width: 700px;
     height: 350px;
     margin-top: 10px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);  
@@ -28,7 +28,7 @@
   box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 } 
 .photo {  
-      padding: 30px;
+      padding: 10px;
       width: 45%;
       text-align: center;
       float: left;
@@ -36,11 +36,12 @@
 }  
 img { 
         max-height: 240px; 
+        max-width: 300px;
 }
 .description {
-       padding: 15px;
+       padding: 10px;
        float: left;
-       width: 55%;
+       width: 45%;
        border-left: 2px solid #efefef;
 }
 .description h1 {
@@ -64,9 +65,16 @@ img {
          font-weight: 500;
          font-size: 12px
 } 
+.description h3 {
+    width: 315px;
+    height: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 .description p { 
          font-size: 12px; 
-         line-height: 20px;
+         line-height: 15px;
          color: #727272;
          padding: 20px 0;
          margin: 0;
