@@ -3,33 +3,56 @@
     <div class="vheader">
       <div>
         <p>Название</p>
-        <input type="text" placeholder="Поиск">
+        <input type="text" placeholder="Поиск" v-model="productName">
       </div>
       <div>
         <p>Цена</p>
-        <input type="text" placeholder="от" style="width: 30px;">
-        <input type="text" placeholder="до" style="width: 30px;">
+        <input type="text" placeholder="от" style="width: 30px;" v-model.number="costA">
+        <input type="text" placeholder="до" style="width: 30px;" v-model.number="costB">
       </div>
     </div>
     <div class="vbody">
-      <MyProduct v-for="card in cards" :key="card.id" :card="card" />
+      <MyProduct v-for="card in cardsFilt" :key="card.id" :card="card" />
     </div>
     
   </div>
  </template>
 
 <script setup>
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, onMounted, ref } from 'vue';
 import MyProduct from './components/product/MyProduct.vue';
 import axios from 'axios';
 import ModalForm from './components/ModalForm.vue';
 
   const cards = ref([])
+  const productName = ref('')
+  const costA = ref(0)
+  const costB = ref(0)
   const getCard = async () => {
     cards.value = await axios.get('https://fakestoreapi.com/products').then(function(response){
       return response.data;
       });
   }
+
+  const cardsFilt = computed(() => {
+    let product = cards.value;
+    if(productName.value != '' || costA.value != 0 | costB.value != 0){
+      product = product.filter((prod) => {
+        return prod.title.toUpperCase().indexOf(productName.value.toUpperCase()) !== -1 
+        });
+    }
+    if(costA.value != 0){
+      product = product.filter((prod) => {
+        return prod.price >= costA.value;
+      });
+    }
+    if(costB.value != 0){
+      product = product.filter((prod) => {
+        return prod.price <= costB.value;
+      });
+    }
+    return product;
+  });
   
   onMounted(() => {
     window.addEventListener("resize", bodyHeight);
@@ -37,7 +60,6 @@ import ModalForm from './components/ModalForm.vue';
   });
   
   onBeforeMount(getCard);
-  
   const bodyHeight = () => {
     document.querySelector(".vbody").style.height = (window.innerHeight - 70) + "px";
   }
