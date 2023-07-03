@@ -8,13 +8,17 @@
             <h4>{{props.card.category}}</h4>
             <h1>{{props.card.price}} $</h1>
             <p>{{props.card.description}}</p>
-            <button>Add to Cart</button>
-            <button>Wishlist</button>
+            <label>Добавить в корзину
+                <input type="checkbox" :value="props.modelValue" :id="props.card.id" @input="$emit('update:model-value', $event.target.value)">
+            </label>
         </div>
     </div>
 </template>
 <script setup>
-    const props = defineProps(['card']);
+import { ref } from 'vue';
+
+    const props = defineProps(['card', 'modelValue']);
+
 </script>
 
 <style scoped>
@@ -67,10 +71,11 @@ img {
 } 
 .description h3 {
     width: 315px;
-    height: 18px;
+    height: 22px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    margin: 0px;
 }
 .description p { 
          font-size: 12px; 
@@ -82,22 +87,22 @@ img {
          overflow: auto;
         max-height: 120px;
 }   
-button {
+label {
          outline: 0;
          border: 0;
          background: none;
          border: 1px solid #d9d9d9;
-         padding: 8px 0px;
+         padding: 8px 8px;
          margin-bottom: 30px;
          color: #515151;
-         text-transform: uppercase;
-         width: 125px;
+         width: 200px;
          font-family: inherit;
          margin-right: 5px;
          transition: all 0.3s ease;
          font-weight: 500;
+         margin-top: 2px;
 }         
-button:hover {
+label:hover {
            background: darken(white, 2%);
            border: 1px solid #aedaa6;
            color: #aedaa6;

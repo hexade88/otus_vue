@@ -10,9 +10,12 @@
         <input type="text" placeholder="от" style="width: 30px;" v-model.number="costA">
         <input type="text" placeholder="до" style="width: 30px;" v-model.number="costB">
       </div>
+      <div>
+        <p>Корзина {{ korzina }}</p>
+      </div>
     </div>
     <div class="vbody">
-      <MyProduct v-for="card in cardsFilt" :key="card.id" :card="card" />
+      <MyProduct v-for="card in cardsFilt" :key="card.id" :card="card" v-model="korzina" />
     </div>
     
   </div>
@@ -33,6 +36,8 @@ import ModalForm from './components/ModalForm.vue';
       return response.data;
       });
   }
+
+  const korzina = ref([])
 
   const cardsFilt = computed(() => {
     let product = cards.value;
