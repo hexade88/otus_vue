@@ -9,7 +9,7 @@
             <h1>{{props.card.price}} $</h1>
             <p>{{props.card.description}}</p>
             <label>Добавить в корзину
-                <input type="checkbox" :value="props.modelValue" :id="props.card.id" @input="$emit('update:model-value', $event.target.value)">
+                <input type="checkbox" v-model="checked" :id="props.card.id" @change="$emit('mychange', {id:props.card.id, checked:checked})">
             </label>
         </div>
     </div>
@@ -17,7 +17,8 @@
 <script setup>
 import { ref } from 'vue';
 
-    const props = defineProps(['card', 'modelValue']);
+    const props = defineProps(['card']);
+    const checked = ref(false);
 
 </script>
 

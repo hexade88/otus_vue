@@ -11,11 +11,11 @@
         <input type="text" placeholder="до" style="width: 30px;" v-model.number="costB">
       </div>
       <div>
-        <p>Корзина {{ korzina }}</p>
+        <p>Корзина {{ korzina.length }}</p>
       </div>
     </div>
     <div class="vbody">
-      <MyProduct v-for="card in cardsFilt" :key="card.id" :card="card" v-model="korzina" />
+      <MyProduct v-for="card in cardsFilt" :key="card.id" :card="card" @mychange="onMyChange" />
     </div>
     
   </div>
@@ -38,6 +38,15 @@ import ModalForm from './components/ModalForm.vue';
   }
 
   const korzina = ref([])
+
+  const onMyChange = (args) => {
+    const {id, checked} = args;
+    if(checked){
+      if(korzina.value.indexOf(id)){korzina.value.push(id);}
+    } else {
+      korzina.value = korzina.value.filter(f => f != id);
+    }
+  };
 
   const cardsFilt = computed(() => {
     let product = cards.value;
